@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
+import Header from './Header/header'
+import Axios from './axios'
+import React, {createContext, JSXElementConstructor, useReducer} from 'react';
+import CurrentWeather from './currentWeather'
 import './App.css';
 
-function App() {
+//現在のデータはcurrentData, 3時間ごとのデータをeveryHourDataに
+const initialState:{currentData:{},everyHourData:{}} ={
+  currentData:{},
+  everyHourData:{},
+}
+
+interface CurrentData {
+    currentData : {
+        cooad:{
+            lat: number,
+            lon: number,
+        },
+        name: string,
+        weather:[
+            main: string
+        ]
+    },
+  }
+
+  export type CurrentWeatherData = CurrentData | {}
+    interface EveryHourData { 
+        list:{
+            dt_txt: string,
+            weather:[
+                main: string,
+            ],
+            main:{
+                temp: number
+            }
+        }
+    }
+
+export type EveryWeatherData = EveryHourData | {}
+
+export const Store = createContext({
+      weatherData: initialState,
+      setWeatherData: ()=>null
+  })
+
+const App: React.FC=()=> {
+  const reducer =(state:CurrentData, action: {type: string, currentData?: CurrentData, everyHourData: EveryHourData})=>{
+    
+    switch(action.type){
+      case 'DISPLAY_WEATHER':
+        return {...state, currentData: action.currentData}
+      case 'EVERYHOURDATA_WEATHER':
+        return {...state, everyHourData: action.everyHourData}
+       default: return
+    }
+  }
+    const[weatherData, setWeatherData] = useReducer(reducer,initialState)
+
   return (
+    <Store.Provider value={{weatherData, setWeatherData}}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <CurrentWeather />
+      <Axios />
     </div>
-  );
+    </Store.Provider>
+  )
 }
 
 export default App;

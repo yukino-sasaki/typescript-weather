@@ -1,0 +1,56 @@
+.weather_parent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 60vh;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.weatherBox {
+  background-color: azure;
+  width: 60vw;
+  height: 50vh;
+  margin: 0 auto;
+  position: absolute;
+  top: 30px;
+  left: 20%;
+}
+
+.current_title {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.box_layout {
+  display: flex;
+}
+
+.box_weather {
+  width: 40%;
+  padding: 10px;
+}
+
+.box_information {
+  width: 60%;
+}
+
+.weather_icon {
+  margin: 3vh;
+  text-align: center;
+}
+
+.font_style {
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.location {
+  margin: 0;
+}
+
+.weather_font_style {
+  text-align: center;
+}

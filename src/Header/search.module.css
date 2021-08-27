@@ -1,0 +1,23 @@
+.search_bar {
+  background-color: rgb(96, 103, 110);
+  color: aliceblue;
+  font-size: 20px;
+}
+
+.location_search {
+  background-color: rgb(96, 103, 110);
+  border-radius: 999px;
+  padding: 10px;
+  display: flex;
+  height: 30px;
+  line-height: 80px;
+}
+
+.location_search > input {
+  border: none !important;
+  background-color: rgb(96, 103, 110);
+}
+
+.location_search > input:focus {
+  outline-width: 0;
+}

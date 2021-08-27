@@ -1,0 +1,21 @@
+.header_color {
+  background-color: black;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_text {
+  color: aliceblue;
+  line-height: 80px;
+  font-size: 30px;
+  margin-left: 2vw;
+}
+
+.header_search {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+}
