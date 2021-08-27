@@ -24,7 +24,8 @@ interface CurrentData {
   }
 
   export type CurrentWeatherData = CurrentData | {}
-    interface EveryHourData { 
+    interface EveryHourData {
+      everyHourData:{
         list:{
             dt_txt: string,
             weather:[
@@ -34,23 +35,29 @@ interface CurrentData {
                 temp: number
             }
         }
+      } 
     }
 
 export type EveryWeatherData = EveryHourData | {}
+
+type ActionType=
+|{type: 'DISPLAY_WEATHER', payload:{currentData:{}}}
+|{type: 'EVERYHOURDATA_WEATHER', payload:{everyHourData:{}}}
 
 export const Store = createContext({
       weatherData: initialState,
       setWeatherData: ()=>null
   })
 
-const App: React.FC=()=> {
-  const reducer =(state:CurrentData, action: {type: string, currentData?: CurrentData, everyHourData: EveryHourData})=>{
+const App: React.FC=()=> {  
+  const reducer =(state:typeof initialState, action: ActionType) =>{
+   
     
     switch(action.type){
       case 'DISPLAY_WEATHER':
-        return {...state, currentData: action.currentData}
+        return {...state, currentData: action.payload.currentData}
       case 'EVERYHOURDATA_WEATHER':
-        return {...state, everyHourData: action.everyHourData}
+        return {...state, everyHourData: action.payload.everyHourData}
        default: return
     }
   }
